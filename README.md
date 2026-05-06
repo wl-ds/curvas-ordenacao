@@ -188,7 +188,7 @@ O gráfico de ordenação relativa apresenta a taxa de inadimplência (*bad rate
 
 Nos modelos avaliados, ambos capturam o comportamento esperado de ordenação, diferenciando clientes bons e maus ao longo dos decis. No entanto, há diferenças relevantes na qualidade e na consistência dessa separação.
 
-<img width="450" height="369" alt="Image" src="https://github.com/user-attachments/assets/e6840789-0968-4747-9d1a-94b19fd07999" />  
+<img width="450" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_ordenacao_relativa.png" />  
 
 **Figura 1**. Curva de ordenação relativa.  
 
@@ -209,7 +209,7 @@ A Curva de Ganho Acumulado (também conhecida como *CAP Curve* em risco de créd
 
 Espera-se que modelos bem ajustados apresentem curvas mais côncavas, com crescimento acentuado nos primeiros decis, indicando maior capacidade de capturar os indivíduos de maior risco logo nas primeiras posições do ranqueamento. Quanto mais próxima a curva estiver do canto superior esquerdo, maior o poder discriminatório do modelo. É importante observar que, supondo uma diagonal de referência (que representaria uma seleção aleatória), a área entre a curva do modelo e essa diagonal está diretamente relacionada ao **Gini**, citada anteriormente como uma das principais métricas-resumo de discriminação.
 
-<img width="457" height="369" alt="Image" src="https://github.com/user-attachments/assets/bcd3c966-60a7-4f2f-b27a-77f960cd429b" />
+<img width="457" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_gain.png" />
 
 **Figura 2**. Curva de ganho acumulado.
 
@@ -228,7 +228,7 @@ A Curva de Lift (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao long
 
 Por construção, a curva parte do valor máximo no primeiro decil e converge para 1 no último decil, ponto em que toda a população foi considerada e o ganho sobre o aleatório desaparece.
 
-<img width="443" height="369" alt="Image" src="https://github.com/user-attachments/assets/8d740a17-cf0c-41ba-9357-1f8b3d026dfc" />
+<img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_lift.png" />
 
 **Figura 3.** Curva de lift.
 
@@ -244,7 +244,7 @@ Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LL
 ### Curva de Inadimplência Acumulada 
 A Curva de Inadimplência Acumulada (ou Cumulative Bad Rate Chart) apresenta a taxa de inadimplência observada na carteira acumulada à medida que a população é incorporada dos melhores para os piores scores (ao contrário dos gráficos anteriores, aqui vemos no eixo x a ordem inversa de decis: 10 → 1). Cada ponto da curva responde à pergunta: "Se eu aprovar os X% melhores scores, qual seria a taxa de inadimplência da carteira resultante?". Essa visualização é particularmente útil para apoiar decisões de política de crédito, pois permite avaliar o trade-off entre volume de aprovação e qualidade da carteira.
 
-<img width="443" height="369" alt="Image" src="https://github.com/user-attachments/assets/a5c200fb-80df-41bb-ae40-45376e6209fa" />
+<img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_inad_acumulada.png" />
 
 **Figura 4.** Curva de inadimplência acumulada.
 
