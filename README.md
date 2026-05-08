@@ -123,7 +123,7 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $FP_g$ = falsos positivos acumulados;\
 > $TPR_g$ = taxa de verdadeiros positivos (sensibilidade);\
 > $FPR_g$ = taxa de falsos positivos (1 - especificidade);\
-> $Lift_g$ = lift do grupo;\
+> $Lift_g$ = *lift* do grupo;\
 > $err_g^{cum}$ = taxa de evento acumulada;\
 > $er_g$ = taxa de evento no grupo.
 
@@ -222,9 +222,9 @@ Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LL
 >O gráfico exibe a métrica de gain acumulado ao longo dos percentis de score, mostrando que ambos os modelos apresentam crescimento monotônico, indicando ordenação consistente do risco. O modelo Random Forest apresenta maior separação entre as faixas de maior e menor risco, com ganho mais acentuado nos percentis iniciais em comparação à Regressão Logística. Portanto, com base na métrica apresentada, o Random Forest demonstra desempenho superior em discriminar risco ao longo dos percentis.
 
 
-### Curva de Lift
+### Curva de *Lift*
 
-A Curva de Lift (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao longo dos decis de score em comparação a uma seleção aleatória. O lift é calculado como a razão entre a proporção acumulada de maus capturados e a proporção acumulada da população, indicando quantas vezes o modelo é mais eficiente do que uma abordagem aleatória.
+A Curva de *Lift* (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao longo dos decis de score em comparação a uma seleção aleatória. O *lift* é calculado como a razão entre a proporção acumulada de maus capturados e a proporção acumulada da população, indicando quantas vezes o modelo é mais eficiente do que uma abordagem aleatória.
 
 Por construção, a curva parte do valor máximo no primeiro decil e converge para 1 no último decil, ponto em que toda a população foi considerada e o ganho sobre o aleatório desaparece.
 
