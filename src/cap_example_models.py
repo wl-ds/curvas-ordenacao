@@ -14,14 +14,17 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import sklearn
 print(sklearn.__version__)
 
-from google.colab import drive # [pt] Conecta o Colab ao Google Drive [en]
-drive.mount("/content/drive")
+# [pt] As duas linhas abaixo conectam o Colab ao Google Drive, caso queira utilizar arquivos no mesmo ambiente
+#from google.colab import drive 
+#drive.mount("/content/drive")
 
 # Parâmetros para as funções
 # [pt] Caminho do banco de dados
 ## [pt] Como pastas compartilhadas não aparecem em "MyDrive" por padrão, é necessário primeiro adicionar o atalho ao Drive:
+path = "ESCREVA SEU PATH AQUI"
+nome_do_arquivo = "cs-training.csv"
 
-data_path = "/content/drive/MyDrive/Portfolio_WL/Gains_chart/app/data/cs-training.csv"
+data_path = f"{path}/{nome_do_arquivo}"
 
 # [pt] Features iniciais para o desenvolvimento do modelo
 
@@ -35,17 +38,6 @@ features = ["RevolvingUtilizationOfUnsecuredLines",
             "NumberRealEstateLoansOrLines",
             "NumberOfTime60-89DaysPastDueNotWorse",
             "NumberOfDependents"]
-
-# features = ['UltPercLimit',
-#             'Idade',
-#             'N_Atraso30_59Dias',
-#             'RendaMensal',
-#             'N_EmeprestimosAbertos',
-#             'N_atrasos_Ult90Dias',
-#             'N_emprestimos',
-#             'N_Atraso60_89Dias',
-#             'N_dependentes',
-#             'lnRazaoGastos']
 
 default_rf_params = {
     "n_estimators":      [100, 200, 250, 300, 400],
