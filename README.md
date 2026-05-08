@@ -262,17 +262,17 @@ Em síntese, a avaliação de modelos de classificação binária não deve ser 
 
 # GLOSSÁRIO
 
-**Acurácia**: número de predições corretas (Verdadeiros Positivos e Verdadeiros Negativos) dividido pelo número de todas as observações (todas as entradas da matriz de confusão somadas). É dada pela equação: $$ \frac{(VP + VN)}{(VP + VN + FP + FN)} $$
+**Acurácia**: número de predições corretas (Verdadeiros Positivos e Verdadeiros Negativos) dividido pelo número de todas as observações (todas as entradas da matriz de confusão somadas). É dada pela equação: $$\frac{(VP + VN)}{(VP + VN + FP + FN)}$$
 
 
-***Precision* (precisão)**: mede quantas das observações preditas como positivas são de fato positivas. É muito usada para limitar o número de falsos positivos. Também conhecida como VPP (valor preditivo positivo), é dada pela equação: $$ \frac{VP}{(VP + FP)} $$
+***Precision* (precisão)**: mede quantas das observações preditas como positivas são de fato positivas. É muito usada para limitar o número de falsos positivos. Também conhecida como VPP (valor preditivo positivo), é dada pela equação: $$\frac{VP}{(VP + FP)}$$
   
 
 ***Recall* (sensibilidade)**: mede a capacidade de um modelo identificar corretamente os casos positivos, ou seja, quantas das observações positivas foram capturadas pelas predição positivas. É usada quando há necessidade de identificar a maior parte das observações positivas (por positivo, queremos dizer desfecho de interesse, ou o que queremos predizer). Também conhecida como TPR (*True Positive Rate* ou Taxa de Verdadeiros Positivos - VPP), é dada pela equação: $$ \frac{VP}{(VP + FN)} $$
 
 **F**$_1$**-score**: métrica que combina *precision* e *recall*. Corresponde à média harmônica entre essas duas medidas:
 
-$$ F_1 = 2 \cdot \frac{(Precision \cdot Recall)}{(Precision + Recall)} $$
+$$F_1 = 2 \cdot \frac{(Precision \cdot Recall)}{(Precision + Recall)}$$
 
 Também existem variações como o $F_{0,5}-score$ e o $F_2-score$. A diferença entre elas está no parâmetro *β*, já que o F-score é definido, de forma geral, por:  
 
