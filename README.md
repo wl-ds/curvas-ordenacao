@@ -42,7 +42,7 @@ O KS é uma métrica calculada a partir das mesmas taxas acumuladas utilizadas n
 
 O Gini é uma transformação linear da AUC-ROC, obtida pela equação **Gini = 2 × AUC − 1**. Por ser apenas uma mudança de escala, as duas métricas carregam exatamente a mesma informação sobre o poder discriminante do modelo, ou seja, qualquer ordenação de modelos feito com AUC produz o mesmo resultado com Gini, sem exceção. A vantagem do Gini está na interpretação: na AUC, 0,5 é o ponto de referência do acaso, o que pode parecer contraintuitivo, enquanto no Gini esse ponto é o zero, tornando a escala mais intuitiva. Assim, modelos melhores que o acaso assumem valores entre 0 e 1, e modelos com ordenação invertida assumem valores negativos, facilitando a comunicação com a área de negócio.
 
-Já as ferramentas de visualização mais comuns são as curvas de **Ordenação Relativa** (Taxa de Maus por Percentil), **Ganho acumulado** (também chamada de *Cumulative Gain*, Perfil de Eficiência Acumulada ou *Cumulative Accuracy Profile* - CAP), **Lift**, e **Curva de Inadimplência Acumulada** (*Cumulative Bad Rate Curve*). Essas curvas analisam o desempenho do modelo após ordenar as observações pela probabilidade predita, avaliando a concentração dos eventos de interesse ao longo da ordenação produzida pelo modelo. Essa análise pode ser realizada diretamente sobre as observações ranqueadas ou por meio de agrupamentos, dados por percentis ou decis.
+Já as ferramentas de visualização mais comuns são as curvas de **Ordenação Relativa** (Taxa de Maus por Percentil), **Ganho acumulado** (também chamada de *Cumulative Gain*, Perfil de Eficiência Acumulada ou *Cumulative Accuracy Profile* - CAP), ***Lift***, e **Curva de Inadimplência Acumulada** (*Cumulative Bad Rate Curve*). Essas curvas analisam o desempenho do modelo após ordenar as observações pela probabilidade predita, avaliando a concentração dos eventos de interesse ao longo da ordenação produzida pelo modelo. Essa análise pode ser realizada diretamente sobre as observações ranqueadas ou por meio de agrupamentos, dados por percentis ou decis.
 
 A partir desse conjunto de ferramentas, pode-se avaliar distintos aspectos de desempenho, como separação entre distribuições, concentração de eventos, coerência de ordenação e comportamento para diferentes limiares de decisão. Todas refletem a capacidade do modelo de classificar corretamente eventos e não eventos.
 
@@ -102,7 +102,7 @@ A partir dessas definições é possível construir a curva ROC, que representa 
 
 Seguindo essa mesma lógica, obtém-se o gráfico de Kolmogorov–Smirnov (KS), que mede a maior distância entre as distribuições acumuladas de eventos ($TPR$) e não eventos ($FPR$):
 
-A tabela anterior descreve o comportamento do modelo no nível das observações $i$, ordenadas de forma decrescente segundo a probabilidade estimada $p_i$. Essa representação permite calcular diretamente métricas como as taxas acumuladas $TPR_i$, $FPR_i$ e o Lift. Para facilitar a interpretação e a construção de gráficos como o de ordenação, é comum agrupar as observações em faixas, geralmente percentis ou decis. Desse modo, seja $g = 1, \dots, G$ o índice desses agrupamentos, definidos segundo a ordenação das probabilidades $p_i$, temos cada grupo $g$ enquanto um subconjunto de observações da tabela original.
+A tabela anterior descreve o comportamento do modelo no nível das observações $i$, ordenadas de forma decrescente segundo a probabilidade estimada $p_i$. Essa representação permite calcular diretamente métricas como as taxas acumuladas $TPR_i$, $FPR_i$ e o *Lift*. Para facilitar a interpretação e a construção de gráficos como o de ordenação, é comum agrupar as observações em faixas, geralmente percentis ou decis. Desse modo, seja $g = 1, \dots, G$ o índice desses agrupamentos, definidos segundo a ordenação das probabilidades $p_i$, temos cada grupo $g$ enquanto um subconjunto de observações da tabela original.
 
 **Tabela 2.** Resultado do modelo agrupado em quintil.
 | $g$ | $n_g$ | $e_g$ | $ne_g$ | $Pop_g$ | $Pop_g^{cum}$ | $TP_g$ | $FP_g$ | $TPR_g$ | $FPR_g$ | $Lift_g$ | $err_g^{cum}$ | $er_g$ |
@@ -123,7 +123,7 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $FP_g$ = falsos positivos acumulados;\
 > $TPR_g$ = taxa de verdadeiros positivos (sensibilidade);\
 > $FPR_g$ = taxa de falsos positivos (1 - especificidade);\
-> $Lift_g$ = lift do grupo;\
+> $Lift_g$ = *lift* do grupo;\
 > $err_g^{cum}$ = taxa de evento acumulada;\
 > $er_g$ = taxa de evento no grupo.
 
@@ -147,7 +147,7 @@ $$
 FPR_g = \frac{FP_g}{n_0}
 $$
 
-A tabela agregada também permite calcular o Lift por faixa, definido de forma simplidicada como a razão entre a taxa acumulada de eventos e a fração acumulada da população:
+A tabela agregada também permite calcular o *Lift* por faixa, definido de forma simplidicada como a razão entre a taxa acumulada de eventos e a fração acumulada da população:
 
 $$
 Lift_g =
@@ -222,27 +222,27 @@ Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LL
 >O gráfico exibe a métrica de gain acumulado ao longo dos percentis de score, mostrando que ambos os modelos apresentam crescimento monotônico, indicando ordenação consistente do risco. O modelo Random Forest apresenta maior separação entre as faixas de maior e menor risco, com ganho mais acentuado nos percentis iniciais em comparação à Regressão Logística. Portanto, com base na métrica apresentada, o Random Forest demonstra desempenho superior em discriminar risco ao longo dos percentis.
 
 
-### Curva de Lift
+### Curva de *Lift*
 
-A Curva de Lift (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao longo dos decis de score em comparação a uma seleção aleatória. O lift é calculado como a razão entre a proporção acumulada de maus capturados e a proporção acumulada da população, indicando quantas vezes o modelo é mais eficiente do que uma abordagem aleatória.
+A Curva de *Lift* (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao longo dos decis de score em comparação a uma seleção aleatória. O *lift* é calculado como a razão entre a proporção acumulada de maus capturados e a proporção acumulada da população, indicando quantas vezes o modelo é mais eficiente do que uma abordagem aleatória.
 
 Por construção, a curva parte do valor máximo no primeiro decil e converge para 1 no último decil, ponto em que toda a população foi considerada e o ganho sobre o aleatório desaparece.
 
 <img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_lift.png" />
 
-**Figura 3.** Curva de lift.
+**Figura 3.** Curva de *lift*.
 
-O modelo Random Forest apresenta desempenho superior ao longo de toda a ordenação, com uma curva consistentemente acima da Regressão Logística. Nos decis iniciais, o modelo atinge níveis de lift significativamente mais elevados, indicando maior concentração de maus pagadores em relação à proporção da população analisada.
+O modelo Random Forest apresenta desempenho superior ao longo de toda a ordenação, com uma curva consistentemente acima da Regressão Logística. Nos decis iniciais, o modelo atinge níveis de *lift* significativamente mais elevados, indicando maior concentração de maus pagadores em relação à proporção da população analisada.
 
-No primeiro decil, o Random Forest identifica aproximadamente 5,5 vezes mais maus pagadores do que uma seleção aleatória, enquanto a Regressão Logística atinge cerca de 3,9 vezes, ou seja, o lift é cerca de 40% superior em favor do modelo Random Forest. Essa vantagem se mantém ao longo dos decis intermediários e só se dissipa nos últimos decis, onde ambas as curvas convergem naturalmente para 1. O resultado reforça a maior eficiência do Random Forest na priorização de clientes de alto risco.
+No primeiro decil, o Random Forest identifica aproximadamente 5,5 vezes mais maus pagadores do que uma seleção aleatória, enquanto a Regressão Logística atinge cerca de 3,9 vezes, ou seja, o *lift* é cerca de 40% superior em favor do modelo Random Forest. Essa vantagem se mantém ao longo dos decis intermediários e só se dissipa nos últimos decis, onde ambas as curvas convergem naturalmente para 1. O resultado reforça a maior eficiência do Random Forest na priorização de clientes de alto risco.
 
 Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LLM, obtivemos a seguinte resposta:
 
->O gráfico mostra que ambos os modelos apresentam ordenação consistente de risco, com o lift decrescendo monotonicamente ao longo dos percentis. O Random Forest exibe maior lift nas faixas iniciais (maior risco) e mantém superioridade em todos os percentis em relação à Regressão Logística. Portanto, o Random Forest demonstra melhor separação de risco entre as faixas, sendo superior segundo a métrica apresentada.
+>O gráfico mostra que ambos os modelos apresentam ordenação consistente de risco, com o *lift* decrescendo monotonicamente ao longo dos percentis. O Random Forest exibe maior *lift* nas faixas iniciais (maior risco) e mantém superioridade em todos os percentis em relação à Regressão Logística. Portanto, o Random Forest demonstra melhor separação de risco entre as faixas, sendo superior segundo a métrica apresentada.
 
 
 ### Curva de Inadimplência Acumulada 
-A Curva de Inadimplência Acumulada (ou Cumulative Bad Rate Chart) apresenta a taxa de inadimplência observada na carteira acumulada à medida que a população é incorporada dos melhores para os piores scores (ao contrário dos gráficos anteriores, aqui vemos no eixo x a ordem inversa de decis: 10 → 1). Cada ponto da curva responde à pergunta: "Se eu aprovar os X% melhores scores, qual seria a taxa de inadimplência da carteira resultante?". Essa visualização é particularmente útil para apoiar decisões de política de crédito, pois permite avaliar o trade-off entre volume de aprovação e qualidade da carteira.
+A Curva de Inadimplência Acumulada (ou *Cumulative Bad Rate Chart*) apresenta a taxa de inadimplência observada na carteira acumulada à medida que a população é incorporada dos melhores para os piores scores (ao contrário dos gráficos anteriores, aqui vemos no eixo x a ordem inversa de decis: 10 → 1). Cada ponto da curva responde à pergunta: "Se eu aprovar os X% melhores scores, qual seria a taxa de inadimplência da carteira resultante?". Essa visualização é particularmente útil para apoiar decisões de política de crédito, pois permite avaliar o trade-off entre volume de aprovação e qualidade da carteira.
 
 <img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_inad_acumulada.png" />
 
@@ -258,21 +258,21 @@ Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LL
 
 
 ## Conclusão
-Em síntese, a avaliação de modelos de classificação binária não deve ser vista como uma escolha entre rigor técnico e aplicabilidade prática, mas como uma combinação dessas perspectivas. Enquanto métricas como AUC-ROC, KS e Gini sintetizam a capacidade do modelo de ordenar corretamente eventos e não eventos, a abordagem baseada na ordenação das probabilidades preditas torna essa capacidade observável ao longo da amostra, permitindo analisar como o risco se concentra e evolui no ranqueamento. Ferramentas como as curvas de ordenação relativa, ganho acumulado, lift e inadimplência acumulada permitem avaliar, de forma objetiva, o impacto de diferentes estratégias de corte sobre o negócio. Dessa forma, a ordenação não substitui a análise de discriminação, mas a operacionaliza, preservando o rigor estatístico e, assim, aproximando a modelagem e os objetivos estratégicos.
+Em síntese, a avaliação de modelos de classificação binária não deve ser vista como uma escolha entre rigor técnico e aplicabilidade prática, mas como uma combinação dessas perspectivas. Enquanto métricas como AUC-ROC, KS e Gini sintetizam a capacidade do modelo de ordenar corretamente eventos e não eventos, a abordagem baseada na ordenação das probabilidades preditas torna essa capacidade observável ao longo da amostra, permitindo analisar como o risco se concentra e evolui no ranqueamento. Ferramentas como as curvas de ordenação relativa, ganho acumulado, *lift* e inadimplência acumulada permitem avaliar, de forma objetiva, o impacto de diferentes estratégias de corte sobre o negócio. Dessa forma, a ordenação não substitui a análise de discriminação, mas a operacionaliza, preservando o rigor estatístico e, assim, aproximando a modelagem e os objetivos estratégicos.
 
 # GLOSSÁRIO
 
-**Acurácia**: número de predições corretas (Verdadeiros Positivos e Verdadeiros Negativos) dividido pelo número de todas as observações (todas as entradas da matriz de confusão somadas). É dada pela equação: $$ \frac{(VP + VN)}{(VP + VN + FP + FN)} $$
+**Acurácia**: número de predições corretas (Verdadeiros Positivos e Verdadeiros Negativos) dividido pelo número de todas as observações (todas as entradas da matriz de confusão somadas). É dada pela equação: $$\frac{(VP + VN)}{(VP + VN + FP + FN)}$$
 
 
-***Precision* (precisão)**: mede quantas das observações preditas como positivas são de fato positivas. É muito usada para limitar o número de falsos positivos. Também conhecida como VPP (valor preditivo positivo), é dada pela equação: $$ \frac{VP}{(VP + FP)} $$
+***Precision* (precisão)**: mede quantas das observações preditas como positivas são de fato positivas. É muito usada para limitar o número de falsos positivos. Também conhecida como VPP (valor preditivo positivo), é dada pela equação: $$\frac{VP}{(VP + FP)}$$
   
 
-***Recall* (sensibilidade)**: mede a capacidade de um modelo identificar corretamente os casos positivos, ou seja, quantas das observações positivas foram capturadas pelas predição positivas. É usada quando há necessidade de identificar a maior parte das observações positivas (por positivo, queremos dizer desfecho de interesse, ou o que queremos predizer). Também conhecida como TPR (*True Positive Rate* ou Taxa de Verdadeiros Positivos - VPP), é dada pela equação: $$ \frac{VP}{(VP + FN)} $$
+***Recall* (sensibilidade)**: mede a capacidade de um modelo identificar corretamente os casos positivos, ou seja, quantas das observações positivas foram capturadas pelas predição positivas. É usada quando há necessidade de identificar a maior parte das observações positivas (por positivo, queremos dizer desfecho de interesse, ou o que queremos predizer). Também conhecida como TPR (*True Positive Rate* ou Taxa de Verdadeiros Positivos - VPP), é dada pela equação: $$\frac{VP}{(VP + FN)}$$
 
 **F**$_1$**-score**: métrica que combina *precision* e *recall*. Corresponde à média harmônica entre essas duas medidas:
 
-$$ F_1 = 2 \cdot \frac{(Precision \cdot Recall)}{(Precision + Recall)} $$
+$$F_1 = 2 \cdot \frac{(Precision \cdot Recall)}{(Precision + Recall)}$$
 
 Também existem variações como o $F_{0,5}-score$ e o $F_2-score$. A diferença entre elas está no parâmetro *β*, já que o F-score é definido, de forma geral, por:  
 
