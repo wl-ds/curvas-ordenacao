@@ -48,9 +48,188 @@ A partir desse conjunto de ferramentas, pode-se avaliar distintos aspectos de de
 
 Antes de detalharmos essas curvas e apresentarmos exemplos, é necessário formalizar como elas são construídas. Na tabela a seguir, utilizamos um conjunto de 10 casos para ilustrar, de forma prática, as relações envolvidas e o procedimento pelo qual essas avaliações visuais são obtidas.
 
+
+
+<div align="center">
+
+<table>
+
+<tr>
+  <td colspan="10" align="left">
+    <b>Tabela 1.</b> Exemplo de resultado com 10 observações.
+  </td>
+</tr>
+
+<tr>
+  <th align="right">i</th>
+  <th align="right">y<sub><i>i</i></sub></th>
+  <th align="right">p<sub><i>i</i></sub></th>
+  <th align="right">1 − p<i><sub>i</sub></i></th>
+  <th align="right">ŷ<sub><i>i</i></sub></th>
+  <th align="right">Pop<sub><i>i</sub><sup>cum</sup></i></th>
+  <th align="right">TP<sub><i>i</sub></i></th>
+  <th align="right">FP<sub><i>i</sub></i></th>
+  <th align="right">TPR<sub><i>i</sub></i></th>
+  <th align="right">FPR<sub><i>i</sub></i></th>
+</tr>
+
+<tr>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">95%</td>
+  <td align="right">5%</td>
+  <td align="right">1</td>
+  <td align="right">10%</td>
+  <td align="right">1</td>
+  <td align="right">0</td>
+  <td align="right">20%</td>
+  <td align="right">0%</td>
+</tr>
+
+<tr>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">80%</td>
+  <td align="right">20%</td>
+  <td align="right">1</td>
+  <td align="right">20%</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">40%</td>
+  <td align="right">0%</td>
+</tr>
+
+<tr>
+  <td align="right">3</td>
+  <td align="right">0</td>
+  <td align="right">75%</td>
+  <td align="right">25%</td>
+  <td align="right">1</td>
+  <td align="right">30%</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">40%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">4</td>
+  <td align="right">1</td>
+  <td align="right">60%</td>
+  <td align="right">40%</td>
+  <td align="right">1</td>
+  <td align="right">40%</td>
+  <td align="right">3</td>
+  <td align="right">1</td>
+  <td align="right">60%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">5</td>
+  <td align="right">1</td>
+  <td align="right">50%</td>
+  <td align="right">50%</td>
+  <td align="right">1</td>
+  <td align="right">50%</td>
+  <td align="right">4</td>
+  <td align="right">1</td>
+  <td align="right">80%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">6</td>
+  <td align="right">0</td>
+  <td align="right">45%</td>
+  <td align="right">55%</td>
+  <td align="right">0</td>
+  <td align="right">60%</td>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">80%</td>
+  <td align="right">40%</td>
+</tr>
+
+<tr>
+  <td align="right">7</td>
+  <td align="right">0</td>
+  <td align="right">30%</td>
+  <td align="right">70%</td>
+  <td align="right">0</td>
+  <td align="right">70%</td>
+  <td align="right">4</td>
+  <td align="right">3</td>
+  <td align="right">80%</td>
+  <td align="right">60%</td>
+</tr>
+
+<tr>
+  <td align="right">8</td>
+  <td align="right">1</td>
+  <td align="right">25%</td>
+  <td align="right">75%</td>
+  <td align="right">0</td>
+  <td align="right">80%</td>
+  <td align="right">5</td>
+  <td align="right">3</td>
+  <td align="right">100%</td>
+  <td align="right">60%</td>
+</tr>
+
+<tr>
+  <td align="right">9</td>
+  <td align="right">0</td>
+  <td align="right">20%</td>
+  <td align="right">80%</td>
+  <td align="right">0</td>
+  <td align="right">90%</td>
+  <td align="right">5</td>
+  <td align="right">4</td>
+  <td align="right">100%</td>
+  <td align="right">80%</td>
+</tr>
+
+<tr>
+  <td align="right">10</td>
+  <td align="right">0</td>
+  <td align="right">10%</td>
+  <td align="right">90%</td>
+  <td align="right">0</td>
+  <td align="right">100%</td>
+  <td align="right">5</td>
+  <td align="right">5</td>
+  <td align="right">100%</td>
+  <td align="right">100%</td>
+</tr>
+
+<tr>
+  <td colspan="10" align="left">
+
+Em que:
+
+y<sub><i>i</sub></i> = valor real (0 ou 1);<br>
+p<sub><i>i</sub></i> = probabilidade predita pelo modelo;<br>
+ŷ<sub><i>i</sub></i> = classe predita pelo modelo;<br>
+Pop<sub><i>i</sub><sup>cum</sup></i> = percentual acumulado da população;<br>
+TP<sub><i>i</sub></i> = verdadeiros positivos acumulados;<br>
+FP<sub><i>i</sub></i> = falsos positivos acumulados;<br>
+TPR<sub><i>i</sub></i> = taxa de verdadeiros positivos (sensibilidade);<br>
+FPR<sub><i>i</sub></i> = taxa de falsos positivos (1 − especificidade).
+
+  </td>
+</tr>
+
+</table>
+
+</div>
+
+<br>
+
+
 #### Tabela 1. Exemplo de resultado com 10 observações.
 | i | $y_i$ | $p_i$ | $1-p_i$ | $\hat{y}_i$ | $Pop_i^{cum}$ | $TP_i$ | $FP_i$ | $TPR_i$ | $FPR_i$ |
-|---|---|---|---|---|---|---|---|---|---|
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 1 | 1 | 95% | 5% | 1 | 10.0% | 1 | 0 | 20.0% | 0.0% |
 | 2 | 1 | 80% | 20% | 1 | 20.0% | 2 | 0 | 40.0% | 0.0% |
 | 3 | 0 | 75% | 25% | 1 | 30.0% | 2 | 1 | 40.0% | 20.0% |
@@ -127,6 +306,143 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $err_g^{cum}$ = taxa de evento acumulada;\
 > $er_g$ = taxa de evento no grupo.
 
+
+<div align="center">
+
+<table>
+
+<tr>
+  <td colspan="13" align="left">
+  <b>Tabela 2.</b> Resultado do modelo agrupado em quintil.
+</td>
+</tr>
+
+<tr>
+  <th align="right">g</th>
+  <th align="right">n<sub><i>g</i></sub></th>
+  <th align="right">e<sub><i>g</i></sub></th>
+  <th align="right">ne<sub><i>g</i></sub></th>
+  <th align="right">Pop<sub><i>g</i></sub></th>
+  <th align="right">Pop<sub><i>g</sub><sup>cum</sup></i></th>
+  <th align="right">TP<sub><i>g</i></sub></th>
+  <th align="right">FP<sub><i>g</i></sub></th>
+  <th align="right">TPR<sub><i>g</i></sub></th>
+  <th align="right">FPR<sub><i>g</i></sub></th>
+  <th align="right"><i>Lift<sub>g</i></sub></th>
+  <th align="right">err<sub><i>g</sub><sup>cum</sup></i></th>
+  <th align="right">er<sub><i>g</i></sub></th>
+</tr>
+
+<tr>
+  <td align="right">1</td>
+  <td align="right">2</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">0.2</td>
+  <td align="right">0.2</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">0.40</td>
+  <td align="right">0.00</td>
+  <td align="right">2.00</td>
+  <td align="right">0.500</td>
+  <td align="right">1.00</td>
+</tr>
+
+<tr>
+  <td align="right">2</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.4</td>
+  <td align="right">3</td>
+  <td align="right">1</td>
+  <td align="right">0.60</td>
+  <td align="right">0.20</td>
+  <td align="right">1.50</td>
+  <td align="right">0.375</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">3</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.6</td>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">0.80</td>
+  <td align="right">0.40</td>
+  <td align="right">1.33</td>
+  <td align="right">0.333</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.8</td>
+  <td align="right">5</td>
+  <td align="right">3</td>
+  <td align="right">1.00</td>
+  <td align="right">0.60</td>
+  <td align="right">1.25</td>
+  <td align="right">0.250</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">5</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">2</td>
+  <td align="right">0.2</td>
+  <td align="right">1.0</td>
+  <td align="right">5</td>
+  <td align="right">5</td>
+  <td align="right">1.00</td>
+  <td align="right">1.00</td>
+  <td align="right">1.00</td>
+  <td align="right">0.000</td>
+  <td align="right">0.00</td>
+</tr>
+
+<tr>
+  <td colspan="13" align="left">
+
+Em que:
+
+g = índice do grupo (quintil);<br>
+n<sub><i>g</sub></i> = número de observações no grupo;<br>
+e<sub><i>g</sub></i> = número de eventos (y=1) no grupo;<br>
+ne<sub><i>g</sub></i> = número de não eventos (y=0) no grupo;<br>
+Pop<sub><i>g</sub></i> = proporção da população no grupo;<br>
+Pop<sub><i>g</sub><sup>cum</sup></i> = proporção acumulada da população;<br>
+TP<sub><i>g</sub></i> = verdadeiros positivos acumulados;<br>
+FP<sub><i>g</sub></i> = falsos positivos acumulados;<br>
+TPR<sub><i>g</sub></i> = taxa de verdadeiros positivos (sensibilidade);<br>
+FPR<sub><i>g</sub></i> = taxa de falsos positivos (1 − especificidade);<br>
+<i>Lift<sub>g</sub></i> = lift do grupo;<br>
+err<sub>g</sub><sup>cum</sup></i> = taxa de evento acumulada;<br>
+er<sub>g</sub></i> = taxa de evento no grupo.
+
+  </td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<br>
+
 A agregação apresenta essas estatísticas indexadas em $g$. Nela, $n_g$ representa o número de observações dentro da faixas, enquanto que $e_g$ e $ne_g$ representam, respectivamente, o número de eventos e não eventos observados em cada faixa. A partir dessas quantidades são definidos os acumulados:
 
 $$
@@ -187,10 +503,11 @@ A seguir, começamos a apresentar as curvas de ordenação utilizando os resulta
 O gráfico de ordenação relativa apresenta a taxa de inadimplência (*bad rate*) ao longo dos decis, definidos a partir da ordenação dos clientes pela probabilidade predita dos modelos. Em um cenário ideal, espera-se uma curva monotônica, na qual os primeiros decis concentrem os indivíduos de maior risco, enquanto os decis finais concentrem aqueles de menor risco, evidenciando boa capacidade de discriminação.
 
 Nos modelos avaliados, ambos capturam o comportamento esperado de ordenação, diferenciando clientes bons e maus ao longo dos decis. No entanto, há diferenças relevantes na qualidade e na consistência dessa separação.
+<div align="center">
+<img width="450" height="369" alt="Image" src="https://github.com/user-attachments/assets/f531077d-02d3-49b0-97ab-85d5e27d6024" />
 
-<img width="450" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_ordenacao_relativa.png" />  
-
-**Figura 1**. Curva de ordenação relativa.  
+  <p><strong>Figura 1.</strong> Curva de ordenação relativa.</p>
+</div>
 
 A Regressão Logística apresenta uma curva mais suave, com taxa de inadimplência de aproximadamente 26% no primeiro decil — cerca de 3,9 vezes a média da carteira (6,68%). Apesar de manter a tendência decrescente ao longo da maior parte da distribuição, o modelo exibe perda de ordenação nos decis finais, evidenciada pela inversão da taxa de inadimplência no último decil, que sobe para aproximadamente 5% após atingir o mínimo no nono decil (~2,5%). Essa inversão, ainda que pequena, compromete a monotonicidade da curva e pode limitar o uso do score em decisões que dependem da confiabilidade do ranqueamento nos melhores perfis.
 
@@ -209,9 +526,11 @@ A Curva de Ganho Acumulado (também conhecida como *CAP Curve* em risco de créd
 
 Espera-se que modelos bem ajustados apresentem curvas mais côncavas, com crescimento acentuado nos primeiros decis, indicando maior capacidade de capturar os indivíduos de maior risco logo nas primeiras posições do ranqueamento. Quanto mais próxima a curva estiver do canto superior esquerdo, maior o poder discriminatório do modelo. É importante observar que, supondo uma diagonal de referência (que representaria uma seleção aleatória), a área entre a curva do modelo e essa diagonal está diretamente relacionada ao **Gini**, citada anteriormente como uma das principais métricas-resumo de discriminação.
 
-<img width="457" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_gain.png" />
+<div align="center">
+<img width="457" height="369" alt="Image" src="https://github.com/user-attachments/assets/01d4416e-348e-4c02-a834-9160ead6f698" />
 
-**Figura 2**. Curva de ganho acumulado.
+  <p><strong>Figura 2.</strong> Curva de ganho acumulado.</p>
+</div>
 
 A Random Forest demonstra desempenho superior ao longo de toda a curva, com destaque para os decis iniciais. Aproximadamente 55% dos maus pagadores são capturados nos primeiros 10% da população, percentual que ultrapassa 70% ao considerar os 20% piores scores. Esse comportamento evidencia forte capacidade de priorização dos indivíduos de maior risco e se traduz em uma área sob a curva significativamente maior, refletindo um Gini mais elevado.
 
@@ -228,9 +547,11 @@ A Curva de *Lift* (ou *Cumulative Lift Chart*) apresenta o ganho do modelo ao lo
 
 Por construção, a curva parte do valor máximo no primeiro decil e converge para 1 no último decil, ponto em que toda a população foi considerada e o ganho sobre o aleatório desaparece.
 
-<img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_lift.png" />
+<div align="center">
+<img width="443" height="369" alt="Image" src="https://github.com/user-attachments/assets/b96bc43d-c4d5-4262-8226-917fa043082b" />
 
-**Figura 3.** Curva de *lift*.
+  <p><strong>Figura 3.</strong> Curva de <em>lift.</em></p>
+</div>
 
 O modelo Random Forest apresenta desempenho superior ao longo de toda a ordenação, com uma curva consistentemente acima da Regressão Logística. Nos decis iniciais, o modelo atinge níveis de *lift* significativamente mais elevados, indicando maior concentração de maus pagadores em relação à proporção da população analisada.
 
@@ -244,9 +565,11 @@ Ao utilizarmos um prompt padrão para interpretação do gráfico a partir da LL
 ### Curva de Inadimplência Acumulada 
 A Curva de Inadimplência Acumulada (ou *Cumulative Bad Rate Chart*) apresenta a taxa de inadimplência observada na carteira acumulada à medida que a população é incorporada dos melhores para os piores scores (ao contrário dos gráficos anteriores, aqui vemos no eixo x a ordem inversa de decis: 10 → 1). Cada ponto da curva responde à pergunta: "Se eu aprovar os X% melhores scores, qual seria a taxa de inadimplência da carteira resultante?". Essa visualização é particularmente útil para apoiar decisões de política de crédito, pois permite avaliar o trade-off entre volume de aprovação e qualidade da carteira.
 
-<img width="443" height="369" alt="Image" src="https://github.com/wl-ds/curvas-ordenacao/blob/main/plots/grafico_inad_acumulada.png" />
+<div align="center">
+<img width="443" height="369" alt="Image" src="https://github.com/user-attachments/assets/a299c983-3b25-499c-bc1c-ef7893b77fab" />
 
-**Figura 4.** Curva de inadimplência acumulada.
+  <p><strong>Figura 4.</strong> Curva de inadimplência acumulada.</p>
+</div>
 
 O Random Forest mantém a taxa de inadimplência acumulada consistentemente inferior à da Regressão Logística ao longo de toda a curva. No ponto de corte destacado (decil 5), que corresponde à aprovação dos 50% melhores scores, o Random Forest apresenta inadimplência de 1,30% contra 3,48% da Regressão Logística, uma diferença absoluta de 2,18 p.p. e uma redução relativa de aproximadamente 63% no risco da carteira aprovada. Ambas as inadimplências estão consideravelmente abaixo da média geral da carteira (6,68%), mas a vantagem do Random Forest é expressiva.
 
@@ -270,7 +593,7 @@ Em síntese, a avaliação de modelos de classificação binária não deve ser 
 
 ***Recall* (sensibilidade)**: mede a capacidade de um modelo identificar corretamente os casos positivos, ou seja, quantas das observações positivas foram capturadas pelas predição positivas. É usada quando há necessidade de identificar a maior parte das observações positivas (por positivo, queremos dizer desfecho de interesse, ou o que queremos predizer). Também conhecida como TPR (*True Positive Rate* ou Taxa de Verdadeiros Positivos - VPP), é dada pela equação: $$\frac{VP}{(VP + FN)}$$
 
-**F**$_1$**-score**: métrica que combina *precision* e *recall*. Corresponde à média harmônica entre essas duas medidas:
+**F<sub>1</sub>-score**: métrica que combina *precision* e *recall*. Corresponde à média harmônica entre essas duas medidas:
 
 $$F_1 = 2 \cdot \frac{(Precision \cdot Recall)}{(Precision + Recall)}$$
 
