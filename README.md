@@ -48,9 +48,188 @@ A partir desse conjunto de ferramentas, pode-se avaliar distintos aspectos de de
 
 Antes de detalharmos essas curvas e apresentarmos exemplos, é necessário formalizar como elas são construídas. Na tabela a seguir, utilizamos um conjunto de 10 casos para ilustrar, de forma prática, as relações envolvidas e o procedimento pelo qual essas avaliações visuais são obtidas.
 
+
+
+<div align="center">
+
+<table>
+
+<tr>
+  <td colspan="10" align="left">
+    <b>Tabela 1.</b> Exemplo de resultado com 10 observações.
+  </td>
+</tr>
+
+<tr>
+  <th align="right">i</th>
+  <th align="right">y<sub><i>i</i></sub></th>
+  <th align="right">p<sub><i>i</i></sub></th>
+  <th align="right">1 − p<i><sub>i</sub></i></th>
+  <th align="right">ŷ<sub><i>i</i></sub></th>
+  <th align="right">Pop<sub><i>i</sub><sup>cum</sup></i></th>
+  <th align="right">TP<sub><i>i</sub></i></th>
+  <th align="right">FP<sub><i>i</sub></i></th>
+  <th align="right">TPR<sub><i>i</sub></i></th>
+  <th align="right">FPR<sub><i>i</sub></i></th>
+</tr>
+
+<tr>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">95%</td>
+  <td align="right">5%</td>
+  <td align="right">1</td>
+  <td align="right">10%</td>
+  <td align="right">1</td>
+  <td align="right">0</td>
+  <td align="right">20%</td>
+  <td align="right">0%</td>
+</tr>
+
+<tr>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">80%</td>
+  <td align="right">20%</td>
+  <td align="right">1</td>
+  <td align="right">20%</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">40%</td>
+  <td align="right">0%</td>
+</tr>
+
+<tr>
+  <td align="right">3</td>
+  <td align="right">0</td>
+  <td align="right">75%</td>
+  <td align="right">25%</td>
+  <td align="right">1</td>
+  <td align="right">30%</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">40%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">4</td>
+  <td align="right">1</td>
+  <td align="right">60%</td>
+  <td align="right">40%</td>
+  <td align="right">1</td>
+  <td align="right">40%</td>
+  <td align="right">3</td>
+  <td align="right">1</td>
+  <td align="right">60%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">5</td>
+  <td align="right">1</td>
+  <td align="right">50%</td>
+  <td align="right">50%</td>
+  <td align="right">1</td>
+  <td align="right">50%</td>
+  <td align="right">4</td>
+  <td align="right">1</td>
+  <td align="right">80%</td>
+  <td align="right">20%</td>
+</tr>
+
+<tr>
+  <td align="right">6</td>
+  <td align="right">0</td>
+  <td align="right">45%</td>
+  <td align="right">55%</td>
+  <td align="right">0</td>
+  <td align="right">60%</td>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">80%</td>
+  <td align="right">40%</td>
+</tr>
+
+<tr>
+  <td align="right">7</td>
+  <td align="right">0</td>
+  <td align="right">30%</td>
+  <td align="right">70%</td>
+  <td align="right">0</td>
+  <td align="right">70%</td>
+  <td align="right">4</td>
+  <td align="right">3</td>
+  <td align="right">80%</td>
+  <td align="right">60%</td>
+</tr>
+
+<tr>
+  <td align="right">8</td>
+  <td align="right">1</td>
+  <td align="right">25%</td>
+  <td align="right">75%</td>
+  <td align="right">0</td>
+  <td align="right">80%</td>
+  <td align="right">5</td>
+  <td align="right">3</td>
+  <td align="right">100%</td>
+  <td align="right">60%</td>
+</tr>
+
+<tr>
+  <td align="right">9</td>
+  <td align="right">0</td>
+  <td align="right">20%</td>
+  <td align="right">80%</td>
+  <td align="right">0</td>
+  <td align="right">90%</td>
+  <td align="right">5</td>
+  <td align="right">4</td>
+  <td align="right">100%</td>
+  <td align="right">80%</td>
+</tr>
+
+<tr>
+  <td align="right">10</td>
+  <td align="right">0</td>
+  <td align="right">10%</td>
+  <td align="right">90%</td>
+  <td align="right">0</td>
+  <td align="right">100%</td>
+  <td align="right">5</td>
+  <td align="right">5</td>
+  <td align="right">100%</td>
+  <td align="right">100%</td>
+</tr>
+
+<tr>
+  <td colspan="10" align="left">
+
+Em que:
+
+y<sub><i>i</sub></i> = valor real (0 ou 1);<br>
+p<sub><i>i</sub></i> = probabilidade predita pelo modelo;<br>
+ŷ<sub><i>i</sub></i> = classe predita pelo modelo;<br>
+Pop<sub><i>i</sub><sup>cum</sup></i> = percentual acumulado da população;<br>
+TP<sub><i>i</sub></i> = verdadeiros positivos acumulados;<br>
+FP<sub><i>i</sub></i> = falsos positivos acumulados;<br>
+TPR<sub><i>i</sub></i> = taxa de verdadeiros positivos (sensibilidade);<br>
+FPR<sub><i>i</sub></i> = taxa de falsos positivos (1 − especificidade).
+
+  </td>
+</tr>
+
+</table>
+
+</div>
+
+<br>
+
+
 #### Tabela 1. Exemplo de resultado com 10 observações.
 | i | $y_i$ | $p_i$ | $1-p_i$ | $\hat{y}_i$ | $Pop_i^{cum}$ | $TP_i$ | $FP_i$ | $TPR_i$ | $FPR_i$ |
-|---|---|---|---|---|---|---|---|---|---|
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 1 | 1 | 95% | 5% | 1 | 10.0% | 1 | 0 | 20.0% | 0.0% |
 | 2 | 1 | 80% | 20% | 1 | 20.0% | 2 | 0 | 40.0% | 0.0% |
 | 3 | 0 | 75% | 25% | 1 | 30.0% | 2 | 1 | 40.0% | 20.0% |
@@ -126,6 +305,143 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $Lift_g$ = *lift* do grupo;\
 > $err_g^{cum}$ = taxa de evento acumulada;\
 > $er_g$ = taxa de evento no grupo.
+
+
+<div align="center">
+
+<table>
+
+<tr>
+  <td colspan="13" align="left">
+  <b>Tabela 2.</b> Resultado do modelo agrupado em quintil.
+</td>
+</tr>
+
+<tr>
+  <th align="right">g</th>
+  <th align="right">n<sub><i>g</i></sub></th>
+  <th align="right">e<sub><i>g</i></sub></th>
+  <th align="right">ne<sub><i>g</i></sub></th>
+  <th align="right">Pop<sub><i>g</i></sub></th>
+  <th align="right">Pop<sub><i>g</sub><sup>cum</sup></i></th>
+  <th align="right">TP<sub><i>g</i></sub></th>
+  <th align="right">FP<sub><i>g</i></sub></th>
+  <th align="right">TPR<sub><i>g</i></sub></th>
+  <th align="right">FPR<sub><i>g</i></sub></th>
+  <th align="right"><i>Lift<sub>g</i></sub></th>
+  <th align="right">err<sub><i>g</sub><sup>cum</sup></i></th>
+  <th align="right">er<sub><i>g</i></sub></th>
+</tr>
+
+<tr>
+  <td align="right">1</td>
+  <td align="right">2</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">0.2</td>
+  <td align="right">0.2</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">0.40</td>
+  <td align="right">0.00</td>
+  <td align="right">2.00</td>
+  <td align="right">0.500</td>
+  <td align="right">1.00</td>
+</tr>
+
+<tr>
+  <td align="right">2</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.4</td>
+  <td align="right">3</td>
+  <td align="right">1</td>
+  <td align="right">0.60</td>
+  <td align="right">0.20</td>
+  <td align="right">1.50</td>
+  <td align="right">0.375</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">3</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.6</td>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">0.80</td>
+  <td align="right">0.40</td>
+  <td align="right">1.33</td>
+  <td align="right">0.333</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">4</td>
+  <td align="right">2</td>
+  <td align="right">1</td>
+  <td align="right">1</td>
+  <td align="right">0.2</td>
+  <td align="right">0.8</td>
+  <td align="right">5</td>
+  <td align="right">3</td>
+  <td align="right">1.00</td>
+  <td align="right">0.60</td>
+  <td align="right">1.25</td>
+  <td align="right">0.250</td>
+  <td align="right">0.50</td>
+</tr>
+
+<tr>
+  <td align="right">5</td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">2</td>
+  <td align="right">0.2</td>
+  <td align="right">1.0</td>
+  <td align="right">5</td>
+  <td align="right">5</td>
+  <td align="right">1.00</td>
+  <td align="right">1.00</td>
+  <td align="right">1.00</td>
+  <td align="right">0.000</td>
+  <td align="right">0.00</td>
+</tr>
+
+<tr>
+  <td colspan="13" align="left">
+
+Em que:
+
+g = índice do grupo (quintil);<br>
+n<sub><i>g</sub></i> = número de observações no grupo;<br>
+e<sub><i>g</sub></i> = número de eventos (y=1) no grupo;<br>
+ne<sub><i>g</sub></i> = número de não eventos (y=0) no grupo;<br>
+Pop<sub><i>g</sub></i> = proporção da população no grupo;<br>
+Pop<sub><i>g</sub><sup>cum</sup></i> = proporção acumulada da população;<br>
+TP<sub><i>g</sub></i> = verdadeiros positivos acumulados;<br>
+FP<sub><i>g</sub></i> = falsos positivos acumulados;<br>
+TPR<sub><i>g</sub></i> = taxa de verdadeiros positivos (sensibilidade);<br>
+FPR<sub><i>g</sub></i> = taxa de falsos positivos (1 − especificidade);<br>
+<i>Lift<sub>g</sub></i> = lift do grupo;<br>
+err<sub>g</sub><sup>cum</sup></i> = taxa de evento acumulada;<br>
+er<sub>g</sub></i> = taxa de evento no grupo.
+
+  </td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<br>
 
 A agregação apresenta essas estatísticas indexadas em $g$. Nela, $n_g$ representa o número de observações dentro da faixas, enquanto que $e_g$ e $ne_g$ representam, respectivamente, o número de eventos e não eventos observados em cada faixa. A partir dessas quantidades são definidos os acumulados:
 
