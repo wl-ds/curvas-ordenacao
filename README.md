@@ -174,7 +174,7 @@ Do ponto de vista conceitual, a tabela agregada resume a informação contida na
 Partindo das discussões realizadas até aqui, utilizamos o *dataset* público *Give Me Some Credit** para trabalharmos a partir da saída real de um modelo. Trata-se de um problema clássico de risco de crédito, composto principalmente por variáveis relacionadas ao comportamento financeiro dos indivíduos.
 
 ```
-*Dataset disponível em https://www.kaggle.com/c/GiveMeSomeCredit
+*Dataset disponível em [Kaggle - Give Me Some Credit](https://www.kaggle.com/c/GiveMeSomeCredit)
 ```
   
 A variável resposta (*target*) é uma *dummy* que classifica os clientes em bons e maus pagadores, sendo considerados maus aqueles que apresentaram atrasos superiores a 90 dias no pagamento de suas obrigações financeiras. Por se tratar de um problema de classificação binária, foram treinados dois modelos amplamente utilizados no mercado: a Regressão Logística e o Random Forest Classifier.
