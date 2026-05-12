@@ -83,7 +83,7 @@ temos a ordenação das observações, o que permite avaliar o comportamento acu
 - $n_1$: total de eventos  
 - $n_0$: total de não eventos  
 
-Para cada posição ordenada, temos as taxas acumuladas de eventos e não eventos:
+Para cada posição ordenada, temos as taxas acumuladas de eventos e não eventos
 
 $$
 TPR_i = \frac{TP_i}{n_1}
@@ -98,9 +98,7 @@ em que:
 - $TP_i$ = número acumulado de eventos até a posição $i$  
 - $FP_i$ = número acumulado de não eventos até a posição $i$
 
-A partir dessas definições é possível construir a curva ROC, que representa graficamente todos os pares $(FPR(t), TPR(t))$ obtidos para diferentes limiares de decisão $t$ aplicados às probabilidades estimadas.
-
-Seguindo essa mesma lógica, obtém-se o gráfico de Kolmogorov–Smirnov (KS), que mede a maior distância entre as distribuições acumuladas de eventos ($TPR$) e não eventos ($FPR$):
+A partir dessas definições é possível construir a curva ROC, que representa graficamente todos os pares $(FPR(t), TPR(t))$ obtidos para diferentes limiares de decisão $t$ aplicados às probabilidades estimadas. Seguindo essa mesma lógica, obtém-se o gráfico de Kolmogorov–Smirnov (KS), que mede a maior distância entre as distribuições acumuladas de eventos ($TPR$) e não eventos ($FPR$).
 
 A tabela anterior descreve o comportamento do modelo no nível das observações $i$, ordenadas de forma decrescente segundo a probabilidade estimada $p_i$. Essa representação permite calcular diretamente métricas como as taxas acumuladas $TPR_i$, $FPR_i$ e o *Lift*. Para facilitar a interpretação e a construção de gráficos como o de ordenação, é comum agrupar as observações em faixas, geralmente percentis ou decis. Desse modo, seja $g = 1, \dots, G$ o índice desses agrupamentos, definidos segundo a ordenação das probabilidades $p_i$, temos cada grupo $g$ enquanto um subconjunto de observações da tabela original.
 
@@ -128,7 +126,7 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $er_g$ = taxa de evento no grupo.
 
 
-A agregação apresenta essas estatísticas indexadas em $g$. Nela, $n_g$ representa o número de observações dentro da faixas, enquanto que $e_g$ e $ne_g$ representam, respectivamente, o número de eventos e não eventos observados em cada faixa. A partir dessas quantidades são definidos os acumulados:
+A agregação apresenta essas estatísticas indexadas em $g$. Nela, $n_g$ representa o número de observações dentro das faixas, enquanto que $e_g$ e $ne_g$ representam, respectivamente, o número de eventos e não eventos observados em cada faixa. A partir dessas quantidades são definidos os acumulados
 
 $$
 e_g^{cum} = \sum_{k=1}^{g} e_k = TP_g
@@ -138,7 +136,7 @@ $$
 ne_g^{cum} = \sum_{k=1}^{g} ne_k = FP_g
 $$
 
-Com base nesses acumulados, podem ser obtidas as taxas acumuladas de eventos e não eventos, de forma bastante similar a tabela original:
+Com base nesses acumulados, podem ser obtidas as taxas acumuladas de eventos e não eventos, de forma bastante similar a tabela original
 
 $$
 TPR_g = \frac{TP_g}{n_1}
@@ -148,7 +146,7 @@ $$
 FPR_g = \frac{FP_g}{n_0}
 $$
 
-A tabela agregada também permite calcular o *Lift* por faixa, definido de forma simplidicada como a razão entre a taxa acumulada de eventos e a fração acumulada da população:
+A tabela agregada também permite calcular o *Lift* por faixa, definido de forma simplificada como a razão entre a taxa acumulada de eventos e a fração acumulada da população
 
 $$
 Lift_g =
