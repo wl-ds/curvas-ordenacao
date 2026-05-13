@@ -3,7 +3,9 @@ from openai import OpenAI, APIError, RateLimitError, Timeout
 from dotenv import load_dotenv
 import base64
 
-load_dotenv("/content/drive/MyDrive/Portfolio_WL/Gains_chart/app/src/.env")
+path = "COLOQUE AQUI O CAMINHO DO SEU .ENV COM A CHAVE DE REQUISIÇÕES DA OPEN AI"
+
+load_dotenv(f"{path}.env")
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)

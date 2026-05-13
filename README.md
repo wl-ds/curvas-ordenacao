@@ -230,6 +230,7 @@ FPR<sub><i>i</sub></i> = taxa de falsos positivos (1 − especificidade).
 #### Tabela 1. Exemplo de resultado com 10 observações.
 | i | $y_i$ | $p_i$ | $1-p_i$ | $\hat{y}_i$ | $Pop_i^{cum}$ | $TP_i$ | $FP_i$ | $TPR_i$ | $FPR_i$ |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+<<<<<<< HEAD
 | 1 | 1 | 95% | 5% | 1 | 10.0% | 1 | 0 | 20.0% | 0.0% |
 | 2 | 1 | 80% | 20% | 1 | 20.0% | 2 | 0 | 40.0% | 0.0% |
 | 3 | 0 | 75% | 25% | 1 | 30.0% | 2 | 1 | 40.0% | 20.0% |
@@ -240,6 +241,18 @@ FPR<sub><i>i</sub></i> = taxa de falsos positivos (1 − especificidade).
 | 8 | 1 | 25% | 75% | 0 | 80.0% | 5 | 3 | 100.0% | 60.0% |
 | 9 | 0 | 20% | 80% | 0 | 90.0% | 5 | 4 | 100.0% | 80.0% |
 | 10 | 0 | 10% | 90% | 0 | 100.0% | 5 | 5 | 100.0% | 100.0% |
+=======
+| 1 | 1 | 95% | 5% | 1 | 10% | 1 | 0 | 20% | 0% |
+| 2 | 1 | 80% | 20% | 1 | 20% | 2 | 0 | 40% | 0% |
+| 3 | 0 | 75% | 25% | 1 | 30% | 2 | 1 | 40% | 20% |
+| 4 | 1 | 60% | 40% | 1 | 40% | 3 | 1 | 60% | 20% |
+| 5 | 1 | 50% | 50% | 1 | 50% | 4 | 1 | 80% | 20% |
+| 6 | 0 | 45% | 55% | 0 | 60% | 4 | 2 | 80% | 40% |
+| 7 | 0 | 30% | 70% | 0 | 70% | 4 | 3 | 80% | 60% |
+| 8 | 1 | 25% | 75% | 0 | 80% | 5 | 3 | 100% | 60% |
+| 9 | 0 | 20% | 80% | 0 | 90% | 5 | 4 | 100% | 80% |
+| 10 | 0 | 10% | 90% | 0 | 100% | 5 | 5 | 100% | 100% |
+>>>>>>> wes-teste
 > **Em que:**\
 > $y_i$ = valor real (0 ou 1);\
 > $p_i$ = probabilidade predita pelo modelo;\
@@ -307,6 +320,7 @@ A tabela anterior descreve o comportamento do modelo no nível das observações
 > $er_g$ = taxa de evento no grupo.
 
 
+<<<<<<< HEAD
 <div align="center">
 
 <table>
@@ -443,6 +457,8 @@ er<sub>g</sub></i> = taxa de evento no grupo.
 
 <br>
 
+=======
+>>>>>>> wes-teste
 A agregação apresenta essas estatísticas indexadas em $g$. Nela, $n_g$ representa o número de observações dentro da faixas, enquanto que $e_g$ e $ne_g$ representam, respectivamente, o número de eventos e não eventos observados em cada faixa. A partir dessas quantidades são definidos os acumulados:
 
 $$
